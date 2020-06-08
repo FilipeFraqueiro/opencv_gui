@@ -1,4 +1,126 @@
-<DrawCircle@BoxLayout>:
+#:import Factory kivy.factory.Factory
+
+
+<Draw>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: self.minimum_height
+    canvas:
+        Color:
+            rgba: 0, 0, 1, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    Spinner:
+        id: draw_options_sp
+        text: "Options"
+        size_hint_y: None
+        values: root.draw_options
+        on_text: root.draw_option_select(self)
+
+    BoxLayout:
+        id: draw_area_bl
+        size_hint_y: None
+        height: self.minimum_height
+
+
+<DrawLine>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: self.minimum_height
+    canvas:
+        Color:
+            rgba: 0, 0, 1, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    Label:
+        size_hint_y: None
+        height: dp(50)
+        text: "Draw Line"
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: line_start_pos_x_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "line start pos x"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: line_start_pos_y_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "line start pos y"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: line_end_pos_x_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "line end pos x"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: line_end_pos_y_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "line end pos y"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: line_color_r_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "color r"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: line_color_g_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "color g"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: line_color_b_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "color b"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: line_tickness_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "tickness"
+        write_tab: False
+
+    Button:
+        size_hint_y: None
+        height: dp(50)
+        text: "Apply"
+        on_press: root.draw_line(self)
+
+
+<DrawCircle>:
     orientation: "vertical"
     size_hint_y: None
     height: self.minimum_height
@@ -81,7 +203,518 @@
         size_hint_y: None
         height: dp(50)
         text: "Apply"
-        on_press: app.image_editor_scr.draw_circle(self)
+        on_press: root.draw_circle(self)
+
+
+<DrawRectangle>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: self.minimum_height
+    canvas:
+        Color:
+            rgba: 0, 0, 1, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    Label:
+        size_hint_y: None
+        height: dp(50)
+        text: "Draw Rectangle"
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: top_left_pos_x_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "top left corner pos x"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: top_left_pos_y_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "top left corner pos y"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: botton_right_pos_x_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "botton right corner pos x"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: botton_right_pos_y_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "botton right corner pos y"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: rectangle_color_r_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "color r"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: rectangle_color_g_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "color g"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: rectangle_color_b_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "color b"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: rectangle_tickness_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "tickness"
+        write_tab: False
+
+    Button:
+        size_hint_y: None
+        height: dp(50)
+        text: "Apply"
+        on_press: root.draw_rectangle(self)
+
+
+<DrawElipse>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: self.minimum_height
+    canvas:
+        Color:
+            rgba: 0, 0, 1, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    Label:
+        size_hint_y: None
+        height: dp(50)
+        text: "Draw Circle"
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: circle_pos_x_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "pos x"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: circle_pos_y_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "pos y"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: circle_radius_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "radius"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: circle_color_r_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "color r"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: circle_color_g_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "color g"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: circle_color_b_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "color b"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: circle_tickness_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "tickness"
+        write_tab: False
+
+    Button:
+        size_hint_y: None
+        height: dp(50)
+        text: "Apply"
+        on_press: root.draw_elipse(self)
+
+
+<DrawText>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: self.minimum_height
+    canvas:
+        Color:
+            rgba: 0, 0, 1, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    Label:
+        size_hint_y: None
+        height: dp(50)
+        text: "Draw Text"
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: text_ti
+        multiline: False
+        hint_text: "text"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: text_pos_x_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "pos x"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: text_pos_y_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "pos y"
+        write_tab: False
+
+    Spinner:
+        id: font_type_sp
+        text: "Font Type Options"
+        size_hint_y: None
+        values: root.font_type_options
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: size_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "text size"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: circle_color_r_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "color r"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: circle_color_g_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "color g"
+        write_tab: False
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: circle_color_b_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "color b"
+        write_tab: False
+    
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: tickness_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "line thickness"
+        write_tab: False
+
+    Spinner:
+        id: line_type_sp
+        text: "Line Type Options"
+        size_hint_y: None
+        values: root.line_type_options
+
+    Button:
+        size_hint_y: None
+        height: dp(50)
+        text: "Apply"
+        on_press: root.draw_text(self)
+
+
+<DrawCascades>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: self.minimum_height
+    canvas:
+        Color:
+            rgba: 0, 0, 1, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    Label:
+        text: "Cascade:"
+        size_hint_y: None
+        height: dp(50)
+
+    Spinner:
+        id: cascades_sp
+        size_hint_y: None
+        height: dp(50)
+        text: "Cascades"
+        values: root.cascades_flag.keys()
+
+    TextInput:
+        size_hint_y: None
+        height: dp(50)
+        id: cascade_tickness_ti
+        input_filter: "int"
+        multiline: False
+        hint_text: "tickness"
+
+    Button:
+        size_hint_y: None
+        height: dp(100)
+        text: "Cascades"
+        on_press: root.draw_cascade(self)
+
+
+<ImageColor>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: self.minimum_height
+    canvas:
+        Color:
+            rgba: 0, 1, 0, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    Label:
+        text: "Color:"
+        size_hint_y: None
+        height: dp(50)
+
+    Spinner:
+        id: color_flag_sp
+        text: "Color Flag"
+        size_hint_y: None
+        values: root.color_space_flag.keys()
+        on_text: root.color_img(self)
+
+
+<Resize_Rotate>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: self.minimum_height
+
+    BoxLayout:
+        orientation: "vertical"
+        size_hint_y: None
+        height: self.minimum_height
+        canvas:
+            Color:
+                rgba: 1, 0, 0, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        Label:
+            text: "Resize:"
+            size_hint_y: None
+            height: dp(50)
+
+        TextInput:
+            id: resize_ti
+            size_hint_y: None
+            height: dp(50)
+            text_hint: "percentage"
+            multiline: False
+
+        Spinner:
+            id: resize_interpol_sp
+            size_hint_y: None
+            height: dp(50)
+            text: "Resize Interpolation"
+            values: root.interpol_flag.keys()
+
+        Button:
+            size_hint_y: None
+            height: dp(50)
+            text: "Apply"
+            on_press: root.resize(self)
+
+
+    BoxLayout:
+        orientation: "vertical"
+        size_hint_y: None
+        height: self.minimum_height
+        canvas:
+            Color:
+                rgba: 0, 1, 0, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        Label:
+            size_hint_y: None
+            height: dp(50)
+            text: "Rotate"
+
+        # Slider:
+            # id: rotate_slider
+            # size_hint_y: None
+            # height: dp(50)
+            # min: 0
+            # max: 360
+            # step: 1
+            # orientation: 'horizontal'
+
+        # Label:
+            # size_hint_y: None
+            # height: dp(50)
+            # text: str(rotate_slider.value)
+
+        TextInput:
+            size_hint_y: None
+            height: dp(50)
+            id: rotate_ti
+            input_filter: "float"
+            multiline: False
+
+        Button:
+            size_hint_y: None
+            height: dp(50)
+            text: "Apply"
+            on_press: root.rotate(self)
+
+
+<Corner_Detectors>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: self.minimum_height
+
+    BoxLayout:
+        orientation: "vertical"
+        size_hint_y: None
+        height: self.minimum_height
+        canvas:
+            Color:
+                rgba: 0, 0, 1, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        Label:
+            size_hint_y: None
+            height: dp(50)
+            text: "Harris Corner Detector"
+
+        TextInput:
+            size_hint_y: None
+            height: dp(50)
+            id: blockSize_ti
+            text: "2"
+            input_filter: "int"
+            multiline: False
+
+        TextInput:
+            size_hint_y: None
+            height: dp(50)
+            id: ksize_ti
+            text: "3"
+            input_filter: "int"
+            multiline: False
+
+        TextInput:
+            size_hint_y: None
+            height: dp(50)
+            id: k_ti
+            input_filter: "float"
+            text: "0.04"
+            multiline: False
+
+        Button:
+            size_hint_y: None
+            height: dp(50)
+            text: "Apply"
+            on_press: root.Harris_Corner_detector(self)
+
+
+    BoxLayout:
+        orientation: "vertical"
+        size_hint_y: None
+        height: self.minimum_height
+        canvas:
+            Color:
+                rgba: 0, 0, 1, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        Label:
+            size_hint_y: None
+            height: dp(50)
+            text: "Shi-Tomasi_Corner_Detector Corner Detector"
+
+        Button:
+            size_hint_y: None
+            height: dp(50)
+            text: "Apply"
+            on_press: root.Shi_Tomasi_Corner_Detector(self)
+
 
 <Image_Editor_Scr>:
     # ScrollView:
@@ -94,25 +727,20 @@
             BoxLayout:
                 orientation: "horizontal"
                 size_hint_y: None
-                height: dp(50)
-
-                Button:
-                    text: "ola"
-                    on_press: root.load_img_2(self)
+                height: dp(40)
 
                 Button:
                     text: "Load"
-                    on_press: root.load_img_popup(self)
+                    on_release: Factory.Load_Image().open()
 
                 Button:
                     text: "Save"
-                    on_press: root.save_img_popup(self)
+                    on_release: Factory.Save_Image().open()
 
             BoxLayout:
                 orientation: "horizontal"
                 size_hint_y: None
-                height: dp(50)
-
+                height: dp(40)
 
                 Label:
                     text: "OpenCV version: " + root.cv2_version
@@ -120,10 +748,8 @@
                 Label:
                     id: img_height_lb
   
-
                 Label:
                     id: img_width_lb
-
 
             Image:
                 id: image_widget
@@ -146,217 +772,40 @@
                     id: options_sp
                     text: "Options"
                     size_hint_y: None
+                    height: dp(40)
                     values: root.options
                     on_text: root.option_select(self)
 
-                
+
+<Load_Image>:
+    size_hint: (0.5, 0.5)
+
+    BoxLayout:
+        orientation: "vertical"
+
+        FileChooserListView:
+            id: filechooser
+            path: root.home_path
+
+        Button:
+            text: "Load"
+            on_release: root.load(filechooser.path)
 
 
-                BoxLayout:
-                    orientation: "vertical"
-                    size_hint_y: None
-                    height: self.minimum_height
-                    canvas:
-                        Color:
-                            rgba: 0, 1, 0, 1
-                        Rectangle:
-                            size: self.size
-                            pos: self.pos
+<Save_Image>:
+    size_hint: (0.5, 0.5)
 
-                    Label:
-                        text: "Color:"
-                        size_hint_y: None
-                        height: dp(50)
+    BoxLayout:
+        orientation: "vertical"
 
-                    Spinner:
-                        id: color_flag_sp
-                        text: "Color Flag"
-                        size_hint_y: None
-                        values: root.color_space_flag.keys()
-                        on_text: root.color_img(self)
+        FileChooserListView:
+            id: filechooser
+            path: root.home_path
 
+        TextInput:
+            id: save_file_name_ti
+            hint_text: "File Name"
 
-                BoxLayout:
-                    orientation: "vertical"
-                    size_hint_y: None
-                    height: self.minimum_height
-                    canvas:
-                        Color:
-                            rgba: 0, 0, 1, 1
-                        Rectangle:
-                            size: self.size
-                            pos: self.pos
-
-                    Label:
-                        text: "Cascade:"
-                        size_hint_y: None
-                        height: dp(50)
-
-                    Spinner:
-                        id: cascades_sp
-                        size_hint_y: None
-                        height: dp(50)
-                        text: "Cascades"
-                        values: root.cascades_flag.keys()
-
-                    Button:
-                        size_hint_y: None
-                        height: dp(100)
-                        text: "Cascades"
-                        on_press: root.cascade(self)
-
-
-                BoxLayout:
-                    orientation: "vertical"
-                    size_hint_y: None
-                    height: self.minimum_height
-                    canvas:
-                        Color:
-                            rgba: 1, 0, 0, 1
-                        Rectangle:
-                            size: self.size
-                            pos: self.pos
-                
-                    Label:
-                        text: "Resize:"
-                        size_hint_y: None
-                        height: dp(50)
-
-                    TextInput:
-                        id: resize_ti
-                        size_hint_y: None
-                        height: dp(50)
-                        text_hint: "percentage"
-                        multiline: False
-
-                    Spinner:
-                        id: resize_interpol_sp
-                        size_hint_y: None
-                        height: dp(50)
-                        text: "Resize Interpolation"
-                        values: root.interpol_flag.keys()
-
-                    Button:
-                        size_hint_y: None
-                        height: dp(50)
-                        text: "Apply"
-                        on_press: root.resize(self)
-
-
-                BoxLayout:
-                    orientation: "vertical"
-                    size_hint_y: None
-                    height: self.minimum_height
-                    canvas:
-                        Color:
-                            rgba: 0, 1, 0, 1
-                        Rectangle:
-                            size: self.size
-                            pos: self.pos
-
-                    Label:
-                        size_hint_y: None
-                        height: dp(50)
-                        text: "Rotate"
-
-                    # Slider:
-                        # id: rotate_slider
-                        # size_hint_y: None
-                        # height: dp(50)
-                        # min: 0
-                        # max: 360
-                        # step: 1
-                        # orientation: 'horizontal'
-
-                    # Label:
-                        # size_hint_y: None
-                        # height: dp(50)
-                        # text: str(rotate_slider.value)
-
-                    TextInput:
-                        size_hint_y: None
-                        height: dp(50)
-                        id: rotate_ti
-                        input_filter: "float"
-                        multiline: False
-
-                    Button:
-                        size_hint_y: None
-                        height: dp(50)
-                        text: "Apply"
-                        on_press: root.rotate(self)
-
-
-                BoxLayout:
-                    orientation: "vertical"
-                    size_hint_y: None
-                    height: self.minimum_height
-                    canvas:
-                        Color:
-                            rgba: 0, 0, 1, 1
-                        Rectangle:
-                            size: self.size
-                            pos: self.pos
-
-                    Label:
-                        size_hint_y: None
-                        height: dp(50)
-                        text: "Harris Corner Detector"
-
-                    TextInput:
-                        size_hint_y: None
-                        height: dp(50)
-                        id: blockSize_ti
-                        text: "2"
-                        input_filter: "int"
-                        multiline: False
-
-                    TextInput:
-                        size_hint_y: None
-                        height: dp(50)
-                        id: ksize_ti
-                        text: "3"
-                        input_filter: "int"
-                        multiline: False
-
-                    TextInput:
-                        size_hint_y: None
-                        height: dp(50)
-                        id: k_ti
-                        input_filter: "float"
-                        text: "0.04"
-                        multiline: False
-
-                    Button:
-                        size_hint_y: None
-                        height: dp(50)
-                        text: "Apply"
-                        on_press: root.Harris_Corner_detector(self)
-
-
-                BoxLayout:
-                    orientation: "vertical"
-                    size_hint_y: None
-                    height: self.minimum_height
-                    canvas:
-                        Color:
-                            rgba: 0, 0, 1, 1
-                        Rectangle:
-                            size: self.size
-                            pos: self.pos
-
-                    Label:
-                        size_hint_y: None
-                        height: dp(50)
-                        text: "Shi-Tomasi_Corner_Detector Corner Detector"
-
-                    Button:
-                        size_hint_y: None
-                        height: dp(50)
-                        text: "Apply"
-                        on_press: root.Shi_Tomasi_Corner_Detector(self)
-
-
-
-
-
+        Button:
+            text: "Save"
+            on_release: root.save(filechooser.path)
